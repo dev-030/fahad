@@ -1,0 +1,193 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Coach {
+  id           String   @id @default(cuid())
+  name         String
+  bio          String
+  image        String
+  specialties  String?
+  achievements String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Program {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  image       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Schedule {
+  id          String   @id @default(cuid())
+  day         String
+  time        String
+  program     String
+  level       String
+  type        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PricingTier {
+  id          String    @id @default(cuid())
+  title       String
+  price       Float
+  duration    String
+  features    Json
+  type        String // ADULTS, KIDS
+  highlighted Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Addon {
+  id          String   @id @default(cuid())
+  name        String
+  price       Int
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Discipline {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  imageUrl    String
+  title       String
+  description String
+  lenses      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model LandingPageSection {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SecondHero {
+  id          String   @id @default(cuid())
+  title       String
+  subtitle    String
+  description String
+  imageUrl    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Video {
+  id  Int    @id @default(autoincrement())
+  url String
+}
+
+model FeatureDiscipline {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  href      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GymFeature {
+  id        String   @id @default(cuid())
+  icon      String
+  text      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CoreValue {
+  id          String   @id @default(cuid())
+  title       String   @unique
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CoachLens {
+  id          String   @id @default(cuid())
+  title       String   @unique
+  subtitle    String
+  landingPageId String?
+  landingPage LandingPage? @relation(fields: [landingPageId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model LandingPage {
+  id                      String   @id @default(cuid())
+  coachSectionTitle       String
+  coachSectionDescription String
+  coachSectionBackgroundImage String?
+  coachLenses             CoachLens[]
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+model OurGym {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SchedulePdf {
+  id        Int      @id @default(autoincrement())
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ApparelCTA {
+  id          String   @id @default(cuid())
+  imageUrl    String
+  logoUrl     String
+  title       String
+  description String
+  buttonText  String
+  buttonUrl   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GymInfo {
+  id            String    @id @default(cuid())
+  address       String
+  phone         String
+  email         String
+  workingHours  String
+  facebookUrl   String
+  instagramUrl  String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

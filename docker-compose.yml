@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      # Map uploads folder
+      - ./uploads:/app/uploads
+
+      # Mount the correct SQLite database file that already has your data
+      - ./prisma/prisma/prisma/dev.db:/app/prisma/prisma/prisma/dev.db
+
+      # Map your environment file
+      - ./.env:/app/.env
+
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/prisma/prisma/prisma/dev.db
+
+    restart: unless-stopped

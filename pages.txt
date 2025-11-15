@@ -1,0 +1,15 @@
+http://localhost:3000/
+
+http://localhost:3000/disciplines/mua-thai
+
+http://localhost:3000/disciplines/jutsu
+
+http://localhost:3000/disciplines/mma
+
+http://localhost:3000/disciplines/fitness
+
+http://localhost:3000/coaches
+
+http://localhost:3000/schedule
+
+http://localhost:3000/membership

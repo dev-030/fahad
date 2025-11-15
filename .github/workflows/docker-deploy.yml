@@ -1,0 +1,44 @@
+name: Docker Build & Deploy
+
+on:
+  push:
+    branches:
+      - new_back
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t benwestrich-backend-fahad .
+
+      # Optional: Push to Docker Hub or GitHub Container Registry
+      # - name: Log in to Docker Hub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     username: ${{ secrets.DOCKER_USERNAME }}
+      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: Push image
+      #   run: docker push benwestrich-backend-fahad
+
+      # Deploy step depends on your server setup
+      # You can use SSH to pull latest code and restart container
+      # Example:
+      # - name: Deploy via SSH
+      #   uses: appleboy/ssh-action@v0.1.10
+      #   with:
+      #     host: ${{ secrets.SERVER_HOST }}
+      #     username: ${{ secrets.SERVER_USER }}
+      #     key: ${{ secrets.SERVER_SSH_KEY }}
+      #     script: |
+      #       cd /path/to/app
+      #       git pull
+      #       docker-compose down
+      #       docker-compose up --build -d

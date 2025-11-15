@@ -1,0 +1,8 @@
+
+
+Add framer motion animation for texts in below sections:
+
+second hero section
+discplines section
+our coaches section
+who we are section

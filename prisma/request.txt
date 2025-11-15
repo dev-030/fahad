@@ -1,0 +1,20 @@
+prisma:query UPDATE `main`.`LandingPageSection` SET `content` = ?, `updatedAt` = ? WHERE (`main`.`LandingPageSection`.`name` = ? AND 1=1) RETURNING `id` AS `id`, `name` AS `name`, `content` AS `content`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`
+Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.landingPageSection.update()` invocation:
+
+
+An operation failed because it depends on one or more records that were required but not found. No record was found for an update.
+    at async PUT (src\app\api\landing-page\[name]\route.ts:27:26)
+  25 |   const { content } = await request.json();
+  26 |
+> 27 |   const updatedSection = await prisma.landingPageSection.update({
+     |                          ^
+  28 |     where: { name },
+  29 |     data: { content },
+  30 |   }); {
+  code: 'P2025',
+  meta: [Object],
+  clientVersion: '6.18.0'
+}
+ PUT /api/landing-page/second-page 500 in 1858ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: invalid stored block lengths

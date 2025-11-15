@@ -1,0 +1,29 @@
+PS E:\ben\Benwestrich-Backend-Fahad> npm run dev        
+
+> frontend@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.4
+   - Local:        http://localhost:3000    
+   - Network:      http://192.168.0.146:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+ ○ Compiling / ...
+ ✓ Compiled / in 2.2s (1549 modules)
+ GET / 200 in 2924ms
+ ✓ Compiled /middleware in 281ms (216 modules)
+ ○ Compiling /admin/disciplines ...
+ ✓ Compiled /admin/disciplines in 2.4s (1654 modules)
+ ⨯ [TypeError: Failed to parse URL from undefined/api/disciplines] {
+  digest: '1016314762',
+  [cause]: [TypeError: Invalid URL] {
+    code: 'ERR_INVALID_URL',
+    input: 'undefined/api/disciplines'
+  }
+}
+ GET /admin/disciplines 500 in 2916ms
+ ✓ Compiled /favicon.ico in 215ms (926 modules)
+ GET /favicon.ico 200 in 408ms
+
